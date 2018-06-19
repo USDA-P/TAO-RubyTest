@@ -1,0 +1,113 @@
+#                       __ _                        _
+#       ___ ___  _ __  / _(_) __ _  _   _ _ __ ___ | |
+#      / __/ _ \|  _ \| |_| |/ _  || | | |  _ ` _ \| |
+#     | (_| (_) | | | |  _| | (_| || |_| | | | | | | |
+#      \___\___/|_| |_|_| |_|\__, (_)__, |_| |_| |_|_|
+#                            |___/  |___/
+#
+#  Environmental specific configuration for running the acceptance test.
+#  The targeted environment can be overridden by passing the TEST_ENV environment
+#  variable.
+#
+#  $ bundle exec cucumber TEST_ENV=test
+#
+
+test05:
+  :host: https://qphisweb05.usda.net/FSISDashBoard/Shared/Login.aspx
+
+test06:
+  :host: https://qphisweb06.usda.net/FSISDashBoard/Shared
+
+#  :dmzhost: http://dphisweb05.usda.net/EnrollmentDMZ
+#  :server_name: QPHISSQL01
+#  :db_username: phis_app
+#  :db_password: 6LGNUuKe
+#  :phis_db_name: PHIS_DB_QA31
+#  :fsis_db_name: FSISSecurity_QA31
+test31:
+  :host: http://qphisweb31.usda.net/FSISDashBoard/Shared
+#  :dmzhost: http://qphisweb31.usda.net/EnrollmentDMZ
+#  :server_name: QPHISSQL01
+#  :db_username: phis_app
+#  :db_password: 6LGNUuKe
+#  :phis_db_name: PHIS_DB_QA31
+#  :fsis_db_name: FSISSecurity_QA31
+#  :browser: chrome
+#  :step_delay: false
+#test05:
+#  :host: https://www.smartrecruiters.com
+#  :dmzhost: http://qphisweb05.usda.net/EnrollmentDMZ
+#  :server_name: QPHISSQL01
+#  :db_username: phis_app
+#  :db_password: 6LGNUuKe
+#  :phis_db_name: PHIS_DB_QA31
+#  :fsis_db_name: FSISSecurity_QA31
+#test06:
+#  :host: http://qphisweb06.usda.net/FSISDashBoard/Shared
+#  :dmzhost: http://qphisweb06.usda.net/EnrollmentDMZ
+#  :server_name: QPHISSQL01
+#  :db_username: phis_app
+#  :db_password: 6LGNUuKe
+#  :phis_db_name: PHIS_DB_QA31
+#  :fsis_db_name: FSISSecurity_QA31
+test30:
+  :host: http://qphisweb30.usda.net/FSISDashBoard/Shared
+#  :dmzhost: http://qphisweb30.usda.net/EnrollmentDMZ
+#  :server_name: QPHISSQL01
+#  :db_username: phis_app
+#  :db_password: 6LGNUuKe
+#  :phis_db_name: PHIS_DB_QA31
+#  :fsis_db_name: FSISSecurity_QA31
+IVV:
+  :host: http://phisuat2.fsis.usda.gov/FSISDashBoard/Shared
+#  :dmzhost: http://phisuat2.fsis.usda.gov/EnrollmentDMZ
+#  :server_name: QPHISSQL01
+#  :db_username: phis_app
+#  :db_password: 6LGNUuKe
+#  :phis_db_name: PHIS_DB_QA31
+#  :fsis_db_name: FSISSecurity_QA31
+UAT:
+  :host: http://phisuat.fsis.usda.gov/FSISDashBoard/Shared
+#  :dmzhost: http://phisuat.fsis.usda.gov/EnrollmentDMZ
+#  :server_name: QPHISSQL01
+#  :db_username: phis_app
+#  :db_password: 6LGNUuKe
+#  :phis_db_name: PHIS_DB_QA31
+#  :fsis_db_name: FSISSecurity_QA31
+CERT:
+  :host: https://phiscert.fsis.usda.gov/FSISDashBoard/Shared
+#  :dmzhost: http://phiscert.fsis.usda.gov/EnrollmentDMZ
+#  :server_name: QPHISSQL01
+#  :db_username: phis_app
+#  :db_password: 6LGNUuKe
+#  :phis_db_name: PHIS_DB_QA31
+#  :fsis_db_name: FSISSecurity_QA31
+ITE:
+  :host: https://phisindsite.fsis.usda.gov/FSISDashBoard/Shared
+#  :dmzhost: http://phisindsite.fsis.usda.gov/EnrollmentDMZ
+#  :server_name: QPHISSQL01
+#  :db_username: phis_app
+#  :db_password: 6LGNUuKe
+#  :phis_db_name: PHIS_DB_QA31
+#  :fsis_db_name: FSISSecurity_QA31
+
+score_dev:
+  :host: http://dphisweb05.usda.net
+
+score_test06:
+   :host: http://qphisweb06.usda.net
+
+score_test31:
+   :host: http://qphisweb31.usda.net
+
+
+chrome:
+  :browser: chrome
+firefox:
+  :browser: firefox
+iexplorer:
+  :browser: ie
+#slow:
+#  :step_delay: true
+#fast:
+#  :step_delay: false

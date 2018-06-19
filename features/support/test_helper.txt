@@ -1,0 +1,50 @@
+#----------------------
+Delivered stories automation script tags
+@SCORE_REGRESSION
+@US_3166_1,@US_3166_2,
+@US_3668,
+@US_3078,
+@US_2137_1,@US_2137_2,@US_2137_3,@US_2137_4,@US_2137_5,@US_2137_6,
+@US_3082_1_3082_2,@US3082_3,@US_3082_4,
+@US_3099
+@US_3085_1_3085_2,@US_3085_3,@US_3085_4,@US_3085_5
+@US_3087_1
+Automated Scripts created but need to update as stories not delivered in QA
+
+@US_2138_1,@US_2138_2,@US_2138_3,
+@US_3091_1_3091_2,@US_3091_3
+
+Automation Completed-
+Sprint 11
+@US_3086_1_3086_2,@US_3086_3
+@US_3083_1_3083_2,@US_3083_3
+@US_3094_1_3094_2,@US_3094_3
+@US_3091_1_3091_2
+
+Sprint 12
+@US_3091_3,
+@US_2381_2382_2384_2386_1,@US_2381_2382_2384_2386_2
+@US_5258_1_US5289_1
+
+bundle exec cucumber -c --tags @US_3091_3,@US_2381_2382_2384_2386,@US_5258_1_US5289_1 test_env=test06 browser=chrome --format progress --format html --out=C:\Users\bkrishna\Desktop\Score_Sprint12.html
+
+@US_5290_1,@US_5290_2,@US_5290_3,@US_5290_4,@US_5290_5 <Gherkin written>
+
+
+bundle exec cucumber -c --tags @US_3086_1_3086_2,@US_3086_3,@US_3083_1_3083_2,@US_3083_3,@US_3094_1_3094_2,@US_3094_3 test_env=test06 browser=chrome --format progress --format html --out=C:\Users\bkrishna\Desktop\Score_Sprint11.html
+
+To Execute Test cases use below command
+Without saving test results in html
+bundle exec cucumber -c --tags @US_3078 test_env=test06 browser=chrome
+
+With saving test results in html
+bundle exec cucumber -c --tags <TAG NAME> test_env=test06 browser=chrome --format progress --format html --out=C:\Users\bkrishna\Desktop\Test06_testresults<DDMMYYYY>.html
+
+bundle exec cucumber -c --tags @SCORE_REGRESSION test_env=test31 browser=chrome --format progress --format html --out=C:\Users\bkrishna\Desktop\Score_RegressionTest31_testresults03202018.html
+
+bundle exec cucumber -c --tags @US_3166_1,@US_3166_2,@US_3668,@US_3078,@US_2137_1,@US_2137_2,@US_2137_3,@US_2137_4,@US_2137_5,@US_2137_6,@US_3082_1_3082_2,@US3082_3,@US_3082_4,@US_3099,@US_3085_1_3085_2,@US_3085_3,@US_3085_4,@US_3085_5 test_env=test06 browser=chrome --format progress --format html --out=C:\Users\bkrishna\Desktop\@US_3166_@US_3168_@US_3078Test06_testresults02132018.html
+
+bundle exec cucumber -c --tags @US_3085_1_3085_2,@US_3085_3,@US_3085_4,@US_3085_5 test_env=test31 browser=chrome --format progress --format html --out=C:\Users\bkrishna\Desktop\Test31_US3085_testresults03202018.html
+
+bundle exec cucumber -c --tags @US_3082_1_3082_2,@US3082_3,@US_3082_4 test_env=test31 browser=chrome --format progress --format html --out=C:\Users\bkrishna\Desktop\US3082_Test31_testresults03202018.html
+

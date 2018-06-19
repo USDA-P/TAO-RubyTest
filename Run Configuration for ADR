@@ -1,0 +1,1 @@
+bundle exe cucumber -c --tag @DOMESTIC_Questionnaire_AQADR,@DOMESTIC_Regression_UAT_AMDR,@DOMESTIC_ERT_Full_Features_Test,@DOMESTIC_SampleManagement_ADRT test_env=test05 browser=chrome

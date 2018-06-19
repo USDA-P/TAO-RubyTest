@@ -1,0 +1,205 @@
+Feature: The feature contains all reusable gherkins used in project
+#*********************************** Reusable Step Definitions ******************************************************************************
+
+#********************************** Step Definitions for Buttons *****************************************************************************
+
+And the user clicks the "<BUTTON_NAME>" button on "<PAGE_NAME>" page
+And the user clicks button with text "<BUTTON_NAME>" on "<PAGE_NAME>" page
+And the user can see the "<BUTTON_NAME>" button is "<Enabled/Disabled>" on "<PAGE_NAME>" page
+And the user can see button with text "<BUTTON_TEXT>" is "<Enabled/Disabled>" on "<PAGE_NAME>" page
+
+#**********************************Step Definitions for Check box *****************************************************************************
+
+And the user check "<CHECKBOX_NAME>" checkbox on "<PAGE_NAME>" page
+And the user uncheck "<CHECKBOX_NAME>" checkbox on "<PAGE_NAME>" page
+And the user can see "<CHECKBOX_NAME>" checkbox is "<Enabled/Disabled>" on "<PAGE_NAME>" page
+
+#**********************************Step Definitions for Drop Down Lists ************************************************************************
+
+# Gherkin used to select given values from drop down with value in options
+And the user selects "<VALUE>" from "<DROPDOWN_NAME>" drop down on "<PAGE_NAME>" page
+
+# Gherkin used to select value based on index like first, second in drop down with value in options
+And the user selects "<FIRST>" value from "<DROPDOWN_NAME>" drop down on "<PAGE_NAME>" page
+
+# Gherkin used to select the remembered value in hash to select in drop down with value in options
+And the user selects current value of "<VALUE>" from "<DROPDOWN_NAME>" drop down on "<PAGE_NAME>" page
+
+# Gherkin used to see the given value is selected in drop down with value in options
+And the user sees "<VALUE>" selected in "<DROPDOWN_NAME>" drop down on "<PAGE_NAME>" page
+
+# Gherkin used to see the saved hash table value in drop down with value in options
+And the user sees current value of "<VALUE>" selected in "<DROPDOWN_NAME>" drop down on "<PAGE_NAME>" page
+
+# Gherkin used to verify drop down with value in options is enabled or disabled
+And the user can see "<DROPDOWN_NAME>" drop down is "<ENABLED/DISABLED>" on "<PAGE_NAME>" page
+
+# Gherkin used to verify values in drop down with value in options, use ; to enter multiple values
+And the user can see "<VALUE>;<VALUE>" values in "<DROPDOWN_NAME>" drop down on "<PAGE_NAME>" page
+
+And the user removes selected "<VALUE>" option from "<DROPDOWN_NAME>" drop down on "<PAGE_NAME>" page
+
+And the user sees values in "<DROPDOWN_NAME>" drop down in alphabetical order on "<PAGE_NAME>" page
+
+# Gherkin used to select values in list box
+And the user selects "<VALUE>" from "<LISTBOX_NAME>" list box on "<PAGE_NAME>" page
+
+#-------------------------Combo box step definitions ---------------------#
+# Gherkin used to select given values from Combo box
+And the user selects "<VALUE>" from "<COMBOBOX_NAME>" combo box on "<PAGE_NAME>" page
+
+# Gherkin used to select the remembered value in hash to select in Combo box
+And the user selects current value of "<VALUE>" from "<COMBOBOX_NAME>" combo box on "<PAGE_NAME>" page
+
+# Gherkin used to see the given value is selected in Combo box
+And the user sees "<VALUE>;<VALUE>" selected in "<COMBOBOX_NAME>" combo box on "<PAGE_NAME>" page
+
+# Gherkin used to see the saved hash table value in Combo box
+And the user sees current value of "<VALUE>" selected in "<COMBOBOX_NAME>" combo box on "<PAGE_NAME>" page
+
+# Gherkin used to verify Combo box is enabled or disabled
+And the user can see "<COMBOBOX_NAME>" combo box is "<ENABLED/DISABLED>" on "<PAGE_NAME>" page
+
+# Gherkin used to verify values in Combo box, use ; to enter multiple values
+And the user can see "<VALUE>;<VALUE> " values in "<COMBOBOX_NAME>" combo box on "<PAGE_NAME>" page
+
+#**********************************Step Definitions for Text Box*******************************************************************************
+
+And the user enters "<VALUE>" into "<TEXTBOX_NAME>" on "<PAGE_NAME>" page
+
+And the user enters unique "<VALUE>" into "<TEXTBOX_NAME>" on "<PAGE_NAME>" page
+
+# This will enter the unique value into field
+And the user enters current value of "<VALUE>" into "<TEXTBOX_NAME>" on "<PAGE_NAME>" page
+
+# Check text box is enable or disable
+And the user can see "<TEXTBOX_NAME>" text box is "<ENABLED/DISABLED>" on "<PAGE_NAME>" page
+
+# Gherkin step definitions to read and remember value of text box into hash table
+And the user remembers the value of "<TEXTBOX_NAME>" text box on "<PAGE_NAME>" page
+
+#*******************************************Step Definitions for Links ************************************************************************
+
+# Gherkin used to click on link with text
+And the user clicks the link with text "<LINK_TEXT>"
+
+# Gherkin used to click on link with URL
+And the user clicks the link with URL "<LINK_URL>"
+
+# Gherkin used to click on link based on index like first, second link with text
+And the user clicks the "<FIRST>" link with text "<LINK_TEXT>"
+
+# Gherkin used to click on link with partial text
+And the user clicks the link with partial text "<LINK_TEXT>"
+
+# Gherkin used to check the presence of link with text, it soft fails and move to next step
+And the user can see the link with partial text "<LINK_TEXT>"
+
+# Gherkin used to check the presence of link with text, it fails and stop execution
+And the user must see the link with partial text "<LINK_TEXT>"
+
+# Gherkin used to check the presence of link with text, it soft fails and move to next step
+And the user can see the link with text "<LINK_TEXT>"
+
+# Gherkin used to check the presence of link with text, it fails and stop execution
+And the user must see the link with text "<LINK_TEXT>"
+
+# Gherkin used to check the presence of link with xpath, it soft fails and move to next step
+And the user can see the "<LINK_NAME>" link on "<PAGE_NAME>" page
+
+# Gherkin used to check the presence of link with text, it fails and stop execution
+And the user must see the "<LINK_NAME>" link on "<PAGE_NAME>" on page
+
+#**********************************Step Definitions for Radio Buttons *************************************************************************
+
+And the user click "<RADIO_BUTTON_NAME>" radio button on "<PAGE_NAME>" page
+
+And the user sees "<RADIO_BUTTON_NAME>" radio button is "<ENABLED/DISABLED>" on "<PAGE_NAME>" page
+
+#**********************************Step Definitions for Text Box*******************************************************************************
+
+And the user enters "<VALUE>" into "<TEXT_AREA_NAME>" text area box on "<PAGE_NAME>" page
+
+And the user enters unique "<VALUE>" into "<TEXT_AREA_NAME>" text area box on "<PAGE_NAME>" page
+
+# This will enter the unique value into field
+And the user enters current value of "<VALUE>" into "<TEXT_AREA_NAME>" text area box on "<PAGE_NAME>" page
+
+# Check text box is enable or disable
+And the user can see "<VALUE>" text area box is "<Enabled/Disabled>" on "<PAGE_NAME>" page
+
+#**********************************Step Definitions to Verify text on page ********************************************************************
+
+# Gherkin used to verify partial text in particular element or field, if match fails continue to next steps
+And the user can see "<TEXT>" partial text on "<PAGE_NAME>" page
+
+# Gherkin used to verify text in page, if match fails continue to next steps
+And the user can see "<TEXT>" text on "<PAGE_NAME>" page
+
+# Gherkin used to verify text in whole page, if match fails continue to next steps
+# Note: Use this statement to verify text only when text match is 1 on page source.
+# Example: For page with Multiple tabs ,verifying text on tab page 1 which is not displaying but it is also present in another tab page then this will pass the statement
+And the user can see text "<TEXT>"
+
+# Gherkin used to verify text in whole page, if match fails stop execution and skip next steps
+# Note: Use this statement to verify text only when text match is 1 on page source.
+# Example: For page with Multiple tabs ,verifying text on tab page 1 which is not displaying but it is also present in another tab page then this will pass the statement
+And the user must see text "<TEXT>"
+
+# Gherkin used to verify text is not displayed in particular element or field, if match fails continue to next steps
+And the user cannot see "<TEXT>" text in "<TEXT_FIELD_NAME>" field on "<PAGE_NAME>" page
+
+# Gherkin used to verify text in particular element or field, if match fails continue to next steps
+And the user can see "<TEXT>" text in "<TEXT_FIELD_NAME>" field on "<PAGE_NAME>" page
+
+#****************************** Step Defnintions for page ***************************************************
+
+And the user navigates to <URL> on browser
+
+# Gherkin used to wait for certain time in seconds
+And the user waits for <SECS> seconds
+
+# Gherkin used to wait for certain time in minutes
+And the user waits for <Minutes> minutes
+
+# Gherkin used to verify the page title
+And the user sees the title "<TITLE_NAME>"
+
+# Gherkin used to close the alerts on page
+And the user closes alert or cancels prompts or confirms pop-ups
+
+# Gherkin used to accpt and close alert on page
+And the user closes alert and accepts prompts or confirm pop-ups
+
+# Gherkin used to close the browser pop ups
+And the user dismisses browser pop-ups$
+
+# Gherkin used to switch to iframe by ID
+And the user switch to "<FRAME_NAME>" frame
+
+# Gherkin used to switch to iframe by XPATH
+And the user find and switch to "<FRAME_NAME>" frame on "<PAGE_NAME>" page
+
+
+And the switch to new tab page and close
+
+And the switch to new tab page
+
+And the return to main page
+
+And the user extends "<ELEMENT_NAME>" and clicks "<MAIN_NAVIGATION_MENU_NAME>" in top navigation section
+
+And the user can see "<TEXT>" header in table on "<PAGE_NAME>" page
+
+And user scrolls down the page
+
+#*********************************** Global Step Definitions ************************************************************************
+# Gherkin step definitions to read and remember text of element like- div,td,tr... into hash table
+And user remembers the value of "<FIELD_NAME>" field on "<PAGE_NAME>" page
+
+# Gherkin used to verify text in particular element or field, if match fails stop execution and skip next steps
+And user must see "<TEXT>" text in "<TEXT_BOX_NAME>" field on "<PAGE_NAME>" page
+
+And user selects "<DATE>" from "<CALENDAR_NAME>" html calendar on "<PAGE_NAME>" page
+
+And user clicks on "<ELEMENT_NAME>" element on "<PAGE_NAME>" page

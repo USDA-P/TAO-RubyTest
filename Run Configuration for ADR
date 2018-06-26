@@ -1,1 +1,2 @@
-bundle exe cucumber -c --tag @DOMESTIC_Questionnaire_AQADR,@DOMESTIC_Regression_UAT_AMDR,@DOMESTIC_ERT_Full_Features_Test,@DOMESTIC_SampleManagement_ADRT test_env=test05 browser=chrome
+Run config ADR: bundle exe cucumber -c --tag @DOMESTIC_Questionnaire_AQADR,@DOMESTIC_Regression_UAT_AMDR,@DOMESTIC_ERT_Full_Features_Test,@DOMESTIC_SampleManagement_ADRT test_env=test05 browser=chrome
+Run config Exports: =bundle exe cucumber -c --tag @EXPORTS_LIBRARIAN_HQ test_env=test06 browser=chrome

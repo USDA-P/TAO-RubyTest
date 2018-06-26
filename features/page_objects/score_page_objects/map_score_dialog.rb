@@ -11,6 +11,8 @@ def map_score_dialog
           'delete dialog:yes'           =>      "xpath^^.//p[contains(text(),'Are you sure you want to delete')]/following::button[text()='Yes']",
           'delete dialog:no'            =>      "xpath^^.//p[contains(text(),'Are you sure you want to delete')]/following::button[text()='No']",
           'report death dialog:yes'     =>      "xpath^^.//span[text()='Report Death']/following::button[text()='Yes'][1]",
-          'report death dialog:no'      =>      "xpath^^.//span[text()='Report Death']/following::button[text()='No'][1]"
+          'report death dialog:no'      =>      "xpath^^.//span[text()='Report Death']/following::button[text()='No'][1]",
+          'cancel draft:cancel draft'   =>      "xpath^^.//*[@id='deleteCase-cancel-controls']/following::button[text()='Cancel Draft']",
+          'cancel draft:cancel'         =>      "xpath^^.//*[@id='deleteCase-cancel-controls']/following::button[text()='Cancel']"
   }
 end

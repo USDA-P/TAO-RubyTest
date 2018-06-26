@@ -22,7 +22,11 @@
 [0608/092306.068:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
 [0608/092306.068:ERROR:exception_snapshot_win.cc(88)] thread ID 4628 not found in process
 [0608/092306.068:WARNING:crash_report_exception_handler.cc(62)] ProcessSnapshotWin::Initialize failed
-[0619/094051.365:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
-[0619/094051.371:ERROR:exception_snapshot_win.cc(88)] thread ID 13732 not found in process
-[0619/094112.213:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
-[0619/094112.216:ERROR:exception_snapshot_win.cc(88)] thread ID 12648 not found in process
+[0614/135618.958:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0614/135618.974:ERROR:exception_snapshot_win.cc(88)] thread ID 16808 not found in process
+[0625/105508.299:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0625/105508.305:ERROR:exception_snapshot_win.cc(88)] thread ID 21236 not found in process
+[0625/122455.654:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0625/122455.656:ERROR:exception_snapshot_win.cc(88)] thread ID 15108 not found in process
+[0625/123302.013:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0625/123302.015:ERROR:exception_snapshot_win.cc(88)] thread ID 14700 not found in process

@@ -766,69 +766,170 @@ end
 
 
 And(/^the user deletes any existing added documents for a country$/) do
-  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_UploadDocuments_rgUploadDocuments']"
-  check_record_present = get_elements_size 'xpath', "#{table_path}/table/tbody/tr/td"
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_UploadDocuments_rgUploadDocuments_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
   if check_record_present > 2
-    # Delete all slaughter record with given sub class in table
     #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
-    table_rows = get_elements_size 'xpath', "#{table_path}/table/tbody/tr"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
     (1..table_rows).each do |rows|
-      #sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[@class='rgRow'][#{rows}]/td[2]"
-      #if sub_class_value.downcase.eql? sub_class.downcase
-      del_obj = get_element_obj 'xpath', "#{table_path}//*[contains(@title, 'Delete')]"
+      delete_icons_row = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[1]"
+      new_document = "Automation_Test_Doc.pdf"
+      if delete_icons_row.downcase.eql? new_document.downcase
+        record_found = true
+      del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[5]/input"
       click_web_element del_obj
       step "user accept browser pop-ups"
-      # ok_conf_obj = get_element_obj 'xpath', ".//*[contains(text(),'OK')]"
-      # click_web_element ok_conf_obj
-      sleep 4
+      # sleep 4r7y,o
     end
-  end
+    end
+    checkpoint (record_found.eql? true), "No document found in table that matches the document to be deleted"
+    end
   end
 
 And(/^the user delete all existing collection$/) do
-  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radRuleCollections']"
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radRuleCollections_ctl00']"
   check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
   if check_record_present > 2
-    # Delete all slaughter record with given sub class in table
     #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
-    table_rows = get_elements_size 'xpath', "#{table_path}//tbody/tr"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
     (1..table_rows).each do |rows|
-      delete_icons_row = get_element_text 'xpath', "#{table_path}//tbody/tr[#{rows}]/td[2]"
+      delete_icons_row = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[2]"
       new_collection = "Automation_Test_Date112"
       if delete_icons_row.downcase.eql? new_collection.downcase
-      del_obj = get_element_obj 'xpath', "#{table_path}//tbody/tr[#{rows}]/td[7]/input"
-      click_web_element del_obj
-      step "user accept browser pop-ups"
-      # ok_conf_obj = get_element_obj 'xpath', ".//*[contains(text(),'OK')]"
-      # click_web_element ok_conf_obj
-      sleep 4
-      break
-      else
-        puts 'No collaboration/s has been added yet, all good'
-      end
-    end
-  end
-  end
-
-And(/^the user click on the added rule collection to be edited$/) do
-  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radRuleCollections']"
-  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
-  if check_record_present > 2
-    # Delete all slaughter record with given sub class in table
-    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
-    table_rows = get_elements_size 'xpath', "#{table_path}//tbody/tr"
-    (1..table_rows).each do |rows|
-      sub_class_value = get_element_text 'xpath', "#{table_path}//tbody/tr[#{rows}]/td[2]"
-      new_collection = "Automation_Test_Date112"
-      if sub_class_value.downcase.eql? new_collection.downcase
-        del_obj = get_element_obj 'xpath', "#{table_path}//tbody/tr[#{rows}]/td[6]/input"
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[7]/input"
         click_web_element del_obj
         step "user accept browser pop-ups"
-        # ok_conf_obj = get_element_obj 'xpath', ".//*[contains(text(),'OK')]"
-        # click_web_element ok_conf_obj
         sleep 4
         break
       end
     end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be deleted"
   end
+end
+
+And(/^the user click on the added rule collection to be edited$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radRuleCollections_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[2]"
+      new_collection = "Automation_Test_Date112"
+      if sub_class_value.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[6]/input"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be edited"
   end
+end
+
+And(/^the user click on the added validator record to be edited$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radValidatorCollections_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[3]"
+      new_collection = "Automation_Test_Date112 Automation Test Description data."
+      if sub_class_value.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[8]/input"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be edited"
+  end
+end
+
+And(/^the user delete validator records created by test$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radValidatorCollections_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      delete_icons_row = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[3]"
+      new_collection = "Automation_Test_Date112 Automation Test Description data."
+      if delete_icons_row.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[11]/input"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be deleted"
+  end
+end
+
+And(/^user refresh the browser$/) do
+    @browser.refresh
+end
+
+And(/^the user perform the enter key command$/) do
+  @browser.send_keys :enter
+end
+
+And(/^the user click on the added instruction to be edited$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radInstructionCollections_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[3]"
+      puts 'the newly added instruction is ' +sub_class_value
+      new_collection = "Automation_Test_Instruction101 Automation Test Description data11."
+      if sub_class_value.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[8]/input"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be edited"
+  end
+end
+
+And(/^the user delete the added instruction records created by test$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radInstructionCollections_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      delete_icons_row = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[3]"
+      new_collection = "Automation_Test_Instruction101 Automation Test Description data11."
+      if delete_icons_row.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[11]/input"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be deleted"
+  end
+end

@@ -135,6 +135,7 @@ Feature: Verify the Add , Edit and Delete Complaint Type with mandatory and with
 
     Scenario: Verify user can can Add , edit and delete Off Taste/Off Odor/Off Appearance complaint type with all data for Submitted "Active" case
 
+    @SMOKE
     @CREATE_NEW_OTHER_COM_TYPE_UAT
    # Verify Add Edit and Delete Other(Non-Specific) Complaint type with Mandatory Form data
     Scenario: Verify user can Add , edit and delete Other(Non-Specific) complaint type with mandatory data for Create New case.

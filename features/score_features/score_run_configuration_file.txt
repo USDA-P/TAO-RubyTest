@@ -1,0 +1,32 @@
+Setting up framework commands
+(Disconnect from VPN and open Terminal on Ruby Mine IDE)
+1. gem install bundler
+2. bundle install
+
+Useful Commands
+With saving test results in html
+bundle exec cucumber -c --tags <TAG NAME> test_env=test06 browser=chrome --format progress --format html --out=C:\Users\bkrishna\Desktop\Test06_testresults<DDMMYYYY>.html
+
+EXECUTE FEATURE FILE BY FEATURE FILE LOCATION
+bundle exec cucumber features/3158_Create New Case/create_new_case.feature --format progress --format html --out=C:\Users\bkrishna\Desktop\create_new_case_testresults<DDMMYYYY>.html
+
+
+TO EXECUTE SMOKE TESTS WHEN BUILD IS DEPLOYED
+Use- tags '@SMOKE' in command line
+
+bundle exec cucumber -c --tags @SMOKE test_env=test06 browser=chrome --format progress --format html --out=C:\Users\bkrishna\Desktop\Smoke_test.html
+or
+bundle exec cucumber -c --tags @SMOKE test_env=test06 browser=chrome
+
+TO EXECUTE UAT TEST SCRIPTS
+bundle exec cucumber -c --tags @UAT_TEST_CASES test_env=test06 browser=chrome --format progress --format html --out=C:\Users\bkrishna\Desktop\UAT_test_Results.html
+@UAT_TEST_CASES
+bundle exec cucumber -c --tags @UAT_TEST_CASES test_env=test06 browser=chrome
+
+TO EXECUTE ALL REGRESSION SUITE
+
+@SCORE_REGRESSION
+bundle exec cucumber -c --tags @SCORE_REGRESSION test_env=test06 browser=chrome --format progress --format html --out=C:\Users\bkrishna\Desktop\SCORE_REGRESSION_test_Results.html
+@UAT_TEST_CASES
+bundle exec cucumber -c --tags @SCORE_REGRESSION test_env=test06 browser=chrome
+

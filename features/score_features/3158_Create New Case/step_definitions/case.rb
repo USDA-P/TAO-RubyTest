@@ -913,3 +913,24 @@ end
 # Then(/^the user click on case number with-"" in submitted case success message on page$/) do |case_number|
 #   pending
 # end
+
+Then(/^the user see cancel draft success message for case number-"(.*)" on Case List page$/) do |case_number|
+  if case_number.downcase.include? 'current value of'
+    hash_key = case_number.split('#')
+    key_value = hash_key[1].strip
+
+    # Get the created value from unique has table
+    case_number = test_data_generator key_value
+
+    # Check Fail test if value is not retrieved
+    if case_number.nil?
+      fail "Not Retrieved created value for : #{key_value}"
+    end
+  else
+    case_number = case_number
+  end
+  cancel_success_msg = "Case #{case_number} Draft Cancelled Successfully"
+  cancel_confirmation_msg = get_element_text 'xpath',".//*[@id='messageToDisplayViewCaseListAlert']/descendant::p[1]"
+  checkpoint((cancel_success_msg.downcase.eql? cancel_confirmation_msg.downcase),"The user didn't see #{cancel_success_msg} text message instead saw: #{cancel_confirmation_msg}")
+
+end

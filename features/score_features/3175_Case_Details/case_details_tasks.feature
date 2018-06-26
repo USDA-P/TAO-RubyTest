@@ -10,7 +10,7 @@ Feature: Verify the functionality of Tasks page when navigating from Case Detail
          User Story 4748:'Case Details' > 'Tasks' > Cancel a task [TC-7370] Completed - 1
          User Story 4740:'Case Details' > 'Tasks' > Add a Case Task [TC-6932,TC-6933,TC-6934] Completed - 3
          User Story 7034:'Case Details' > 'Tasks' > Investigated case status [TC-7439,TC-7440,TC-7441,TC-7442,TC-7443,TC-7444,TC-7445] Completed - 6
-
+  
   @SMOKE
   @US_4741_4744_4746_4747_4748_4740
   Scenario: Verify user can add, edit and delete tasks for submitted case

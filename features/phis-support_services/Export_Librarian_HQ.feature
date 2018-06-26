@@ -205,7 +205,6 @@ Feature: Exports HQ
       | CSI User    | Role             | Page Header       | Country to be Added | Rule Collection Name    | Rule Collection Description       | Edit Rule Collection Description Data    |
       | Riden, Mary | Export Librarian | Country Selection | ANDORRA             | Automation_Test_Date112 | Automation Test Description data. | Edited Automation Test Description data. |
 
-
   @TC_61.5
   Scenario Outline: 61.5 Add a Validator Record.
     #Login to the system.

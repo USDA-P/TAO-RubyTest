@@ -89,7 +89,7 @@ And(/^the user adds a new meat record Sub Class"([^"]*)" Head Count "([^"]*)" Li
   # step "the user waits 3 seconds"
   # if step "the user clicks \"add slaughter record link\" on \"DispositionReporting/EstablishmentReporting\" page"
   step "the user clicks on \"add slaughter record link\" element on \"DispositionReporting/EstablishmentReporting\" page"
-    # step "the user waits 6 seconds"
+  # step "the user waits 6 seconds"
 
   # else
   #   puts "the element has already received a click."
@@ -139,7 +139,7 @@ And(/^the user deletes existing poultry records if any$/) do
       sleep 3
     end
   end
-  end
+end
 
 And(/^the user delete existing meat record if any exist$/) do
   if step "the user clicks on \"delete icon for meat\" element on \"DispositionReporting/EstablishmentReporting\" page"
@@ -368,23 +368,23 @@ And(/^the user "(.*)" New Disposition Record under sub class-"(.*)" with Tag num
   end
 end
 
-  And(/^the user delete Slaughter Record with if present$/) do
-    table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_MeatSlaughterSummaryControl_rgMeatSlaughter_ctl00']"
-    # Delete all slaughter record with given sub class in table
-    check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
-    if check_record_present > 2
-      table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr[@class='rgRow']"
-      (1..table_rows).each do |rows|
-        # sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[@class='rgRow'][#{rows}]/td[2]"
-        # if sub_class_value.downcase.eql? sub_class.downcase
-        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[@class='rgRow'][#{rows}]/td[10]/input"
-          click_web_element del_obj
-          step 'the user dismisses browser pop-ups'
-          sleep 2
-        # end
-      end
+And(/^the user delete Slaughter Record with if present$/) do
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_MeatSlaughterSummaryControl_rgMeatSlaughter_ctl00']"
+  # Delete all slaughter record with given sub class in table
+  check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+  if check_record_present > 2
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr[@class='rgRow']"
+    (1..table_rows).each do |rows|
+      # sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[@class='rgRow'][#{rows}]/td[2]"
+      # if sub_class_value.downcase.eql? sub_class.downcase
+      del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[@class='rgRow'][#{rows}]/td[10]/input"
+      click_web_element del_obj
+      step 'the user dismisses browser pop-ups'
+      sleep 2
+      # end
     end
   end
+end
 
 
 And(/^the user delete Slaughter Record with "(.*)" sub-class if present$/) do |sub_class|
@@ -442,7 +442,7 @@ end
 
 And(/^user accept browser pop\-ups$/) do
   if @browser.alert.exists?
-  @browser.alert.ok
+    @browser.alert.ok
   else
     puts 'No Pop Up to close or accept, all good'
   end
@@ -503,8 +503,8 @@ And(/^the user verify if the establishment already have a no kill period$/) do
     step "the user clicks on \"Establishment Reporting\" element on \"FSISDashBoard/Default\" page"
   else
     puts 'No kill Period has not yet been added to the selected Establishment'
-    end
   end
+end
 
 
 And(/^the user sign out and close the browser$/) do
@@ -777,17 +777,59 @@ And(/^the user deletes any existing added documents for a country$/) do
       new_document = "Automation_Test_Doc.pdf"
       if delete_icons_row.downcase.eql? new_document.downcase
         record_found = true
-      del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[5]/input"
-      click_web_element del_obj
-      step "user accept browser pop-ups"
-      # sleep 4r7y,o
-    end
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[5]/input"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        # sleep 4r7y,o
+      end
     end
     checkpoint (record_found.eql? true), "No document found in table that matches the document to be deleted"
+  end
+end
+
+Then(/^the user clicks on add link for directed task-"(.*)" on "(.*)" page$/) do |value, page_name|
+  if value.downcase.include? 'current value of'
+    hash_key = value.split('#')
+    key_value = hash_key[1].strip
+
+    # Get the created value from unique has table
+    value = test_data_generator key_value
+
+    # Check Fail test if value is not retrieved
+    if value.nil?
+      fail "Not Retrieved created value for : #{key_value}"
+    end
+  else
+    value = value
+  end
+
+  table_rows = get_elements_size 'xpath',"//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_RadGridSingleEstablishmentTaskList_ctl00']/tbody/tr"
+  (1..table_rows).each do |rows|
+    task_name_value = get_element_text 'xpath',"//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_RadGridSingleEstablishmentTaskList_ctl00']/tbody/tr[#{rows}]/td[2]"
+    if task_name_value.downcase.include? value.downcase
+      routine_add_xpath = "//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_RadGridSingleEstablishmentTaskList_ctl00']/tbody/tr[#{rows}]/td[10]/a"
+      routine_add_link_obj= get_element_obj 'xpath',routine_add_xpath
+      click_web_element routine_add_link_obj
+      break
     end
   end
 
-And(/^the user delete all existing collection$/) do
+end
+
+Then(/^the user enters "(.*)" on "(.*)" in Assign Task window$/) do |value, date_input|
+  element_xpath = ".//span[text()='#{date_input}']/following::input[1]"
+# puts element_xpath
+# puts value
+  element_obj = @browser.text_field(:xpath,element_xpath)
+  focus_on_element(element_obj)
+  element_obj.set value
+# element_obj.set value
+# sleep 4
+# # Enter value in text box
+# type_value_in_element 'xpath', element_xpath, value
+end
+
+  And(/^the user delete all existing collection$/) do
   record_found = false
   table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radRuleCollections_ctl00']"
   check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
@@ -856,6 +898,69 @@ And(/^the user click on the added validator record to be edited$/) do
   end
 end
 
+Then(/^the user enters the consolidate application number for current value of "(.*)" into "(.*)" on "(.*)" page$/) do |key, field_name, page_name|
+  if key.downcase.eql? 'application number of 62.12 for consolidate'
+
+    # Get the created value from unique has table
+    application_number1 = test_data_generator 'consolidate 1st application number 62.12'
+
+    # Check Fail test if value is not retrieved
+    if application_number1.nil?
+      fail "Not Retrieved created value for : consolidate 1st application number 62.12"
+    end
+
+    # Get the created value from unique has table
+    application_number2 = test_data_generator 'consolidate 2nd application number 62.12'
+
+    # Check Fail test if value is not retrieved
+    if application_number2.nil?
+      fail "Not Retrieved created value for : consolidate 2nd application number 62.12"
+    end
+
+    value = application_number1+','+application_number2
+  else
+    value = key
+  end
+
+  begin
+    selector, element_path = get_element_target(field_name, page_name).split('^^')
+  rescue
+    fail("Element Xpath is not found for #{field_name} in #{page_name} page objects File")
+  end
+
+  if selector.nil? || element_path.nil?
+    fail("Element Xpath is not found for #{field_name} in #{page_name} page objects File")
+  end
+  selector =(selector.downcase.include? 'xpath') ? :xpath : :css
+
+  type_value_in_textarea_element selector, element_path, value
+end
+
+And(/^the user click on the added requester edit icon to be edited$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ReqSearchResult_grdRequests_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[3]"
+      puts sub_class_value
+      new_collection = "Industry"
+      # new_collection = "micheal@test.com"
+      if sub_class_value.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[5]/input"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be edited"
+  end
+end
+
 And(/^the user delete validator records created by test$/) do
   record_found = false
   table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radValidatorCollections_ctl00']"
@@ -880,7 +985,7 @@ And(/^the user delete validator records created by test$/) do
 end
 
 And(/^user refresh the browser$/) do
-    @browser.refresh
+  @browser.refresh
 end
 
 And(/^the user perform the enter key command$/) do
@@ -933,3 +1038,572 @@ And(/^the user delete the added instruction records created by test$/) do
     checkpoint (record_found.eql? true), "No Records found in table that matches the record to be deleted"
   end
 end
+
+And(/^the user click on the approve icon for the submitted validator to be approve$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radApproval_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[4]"
+      new_collection = "Automation_Test_Date112"
+      if sub_class_value.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[6]/input"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be edited"
+  end
+end
+
+And(/^the user click on the reject icon for the submitted validator to be rejected/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radApproval_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[4]"
+      new_collection = "Automation_Test_Date112"
+      if sub_class_value.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[7]/input"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be edited"
+  end
+end
+
+
+And(/^the user click on the approve icon for the submitted instruction to be approved/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radApproval_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[4]"
+      new_collection = "Automation_Test_Instruction101"
+      if sub_class_value.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[6]/input"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be edited"
+  end
+end
+
+And(/^the user delete approved instruction records created by test$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radInstructionCollections_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      delete_icons_row = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[3]"
+      new_collection = "Automation_Test_Instruction101 Automation Test Description data11."
+      if delete_icons_row.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[11]/input"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be deleted"
+  end
+end
+
+And(/^the user click on the reject icon for the submitted instruction record to be rejected/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radApproval_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[4]"
+      new_collection = "Automation_Test_Instruction101"
+      if sub_class_value.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[7]/input"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be edited"
+  end
+end
+
+And(/^the user delete rejected instruction records created by test$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radInstructionCollections_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      delete_icons_row = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[3]"
+      new_collection = "Automation_Test_Instruction101 Automation Test Description data11."
+      if delete_icons_row.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[11]/input"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be deleted"
+  end
+end
+
+And(/^the user click on the edit icon for the country assign$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rdgReferenceTableDetails_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[4]"
+      new_collection = "ANDORRA"
+      if sub_class_value.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[1]/input"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be edited"
+  end
+end
+
+And(/^the user click on the home icon for the Hillside Turkey Farm$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_Establishment_MyEstablishments_gridUserEstablishments_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[2]"
+      new_collection = "Hillside Turkey Farm"
+      if sub_class_value.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[1]/input"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be edited"
+  end
+end
+
+And(/^the user click on the edit icon for the application started$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[3]"
+      new_collection = "Hillside Turkey Farm"
+      if sub_class_value.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[10]/a[1]/img"
+        #Wait for element to be exist, visible,present and enabled
+        wait_for_element(del_obj)
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be edited"
+  end
+end
+
+And(/^the user click on the delete icon for the application started$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[3]"
+      new_collection = "Hillside Turkey Farm"
+      if sub_class_value.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[12]/a/img"
+        #Wait for element to be exist, visible,present and enabled
+        wait_for_element(del_obj)
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be edited"
+  end
+end
+
+And(/^the user clicks on the open icon for validator records created by test$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radValidatorCollections_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      delete_icons_row = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[3]"
+      new_collection = "Automation_Test_Date112 Automation Test Description data."
+      if delete_icons_row.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[9]/input"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be deleted"
+  end
+end
+
+And(/^the user click on the delete link for the added product$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgForm9060_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[5]"
+      new_collection = "Delete"
+      if sub_class_value.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[5]/a"
+        #Wait for element to be exist, visible,present and enabled
+        wait_for_element(del_obj)
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be edited"
+  end
+end
+
+
+And(/^the user deletes existing instruction record if any$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgForm9060_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[5]"
+      new_collection = "Delete"
+      if sub_class_value.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[5]/a"
+        #Wait for element to be exist, visible,present and enabled
+        wait_for_element(del_obj)
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be edited"
+  end
+end
+
+And(/^the user click on the user to manage his or her role$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgUsers_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      delete_icons_row = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[3]"
+      user_role = "[Circuit]\nElizabeth, NJ (8020)"
+      if delete_icons_row.downcase.eql? user_role.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[5]//*[contains(@class, 'edit')]"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be managed"
+  end
+end
+
+And(/^the user deletes any existing saa role added by the test$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ProfileRoles1_rgRoles_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      delete_icons_row = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[2]"
+      puts delete_icons_row
+      new_document = "Service Account Administrator\n[MISC] No work areas were assigned."
+      if delete_icons_row.downcase.eql? new_document.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[5]/input[2]"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No document found in table that matches the document to be deleted"
+  end
+end
+
+And(/^the user deletes any existing export viewer role added by the test$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ProfileRoles1_rgRoles_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      delete_icons_row = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[2]"
+      puts delete_icons_row
+      new_document = "Export Viewer\n[MISC] No work areas were assigned."
+      if delete_icons_row.downcase.eql? new_document.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[5]/input[2]"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No document found in table that matches the document to be deleted"
+  end
+end
+
+And(/^the user click on the magnifying glass icon for the selected application$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[3]"
+      new_collection = "Hillside Turkey Farm"
+      if sub_class_value.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[8]/a/img"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be click"
+  end
+end
+
+
+And(/^the user click on the magnifying glass icon for the approved application$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgRecentApplications_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      sub_class_value = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[3]"
+      new_collection = "Hillside Turkey Farm/M10828 P10828"
+      if sub_class_value.downcase.eql? new_collection.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[8]/a/img"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be click"
+  end
+end
+
+And(/^the user deletes any existing user administrator role added by the test$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ProfileRoles1_rgRoles_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      delete_icons_row = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[2]"
+      puts delete_icons_row
+      new_document = "User Administrator (Federal)\n[MISC] No work areas were assigned."
+      if delete_icons_row.downcase.eql? new_document.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[5]/input[2]"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No document found in table that matches the document to be deleted"
+  end
+end
+
+And(/^the user clicks on the select link for the establishment$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgOrganization_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      delete_icons_row = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[5]"
+      puts delete_icons_row
+      new_document = "Hillside Turkey Farm (M10828; P10828) E-FCLT-2406 "
+      if delete_icons_row.downcase.eql? new_document.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[12]/a/img"
+        click_web_element del_obj
+        step "the user clicks on \"9060: ok button\" element on \"Exports/Librarian\" page"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No document found in table that matches the document to be deleted"
+  end
+end
+
+And(/^the user deletes the 9060 created by the test$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      delete_icons_row = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[5]"
+      puts delete_icons_row
+      new_document = "Submitted"
+      if delete_icons_row.downcase.eql? new_document.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[12]/a/img"
+        click_web_element del_obj
+        step "the user clicks on \"9060: ok button\" element on \"Exports/Librarian\" page"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No data found in table that matches the data to be deleted"
+  end
+end
+
+And(/^the user click on the organization to verify the changes needed$/) do
+  record_found = false
+  sleep 2
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgOrganization_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}//tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      delete_icons_row = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[1]"
+      user_role = "Hillside Turkey Farm (M10828; P10828) \n E-FCLT-2406"
+      if delete_icons_row.downcase.eql? user_role.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[7]/a"
+        click_web_element del_obj
+        step "user accept browser pop-ups"
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be managed"
+  end
+end
+
+And(/^the user verify the filtered organization on the table$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgOrganization_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+  if check_record_present > 2
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      delete_icons_row = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[1]"
+      user_role = "Hillside Turkey Farm (M10828; P10828) \n E-FCLT-2406"
+      if delete_icons_row.downcase.eql? user_role.downcase
+        record_found = true
+        del_obj = get_elements_size 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[1]"
+        puts 'the filtered organization is ' +del_obj
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No Records found in table that matches the record to be managed"
+  end
+end
+
+And(/^the user click on the check box on the return application$/) do
+  record_found = false
+  table_path = ".//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rg9060Applications_ctl00']"
+  check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+  if check_record_present > 0
+    #check_record_present = get_elements_size 'xpath', "#{table_path}/tbody/tr/td"
+    table_rows = get_elements_size 'xpath', "#{table_path}/tbody/tr"
+    (1..table_rows).each do |rows|
+      delete_icons_row = get_element_text 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[2]"
+      puts delete_icons_row
+      new_document = "FY-2018"
+      if delete_icons_row.downcase.eql? new_document.downcase
+        record_found = true
+        del_obj = get_element_obj 'xpath', "#{table_path}/tbody/tr[#{rows}]/td[1]/span/input"
+        click_web_element del_obj
+        sleep 4
+        break
+      end
+    end
+    checkpoint (record_found.eql? true), "No document found in table that matches the document to be deleted"
+  end
+end
+

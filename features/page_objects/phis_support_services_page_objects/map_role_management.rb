@@ -1,0 +1,86 @@
+def map_role_management
+  @page_objects['role_management'] =
+
+
+      {
+          #Export librarian, adding a country.
+          'user management: left nav'                               =>"xpath^^.//*[contains(text(), 'ser Management')]",
+          'manage user: left nav'                                   =>"xpath^^.//*[contains(text(), 'anage Users')]",
+          'account type drop down'                                  =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ddlTypes']",
+          'account type: open link'                                 =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgUsers_ctl00']/tbody/tr[3]//*[contains(@class, 'edit')]",
+          'user profile: role tab'                                  =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ucTabStrip']//*[contains(text(), 'Roles')]",
+          'add a role: business area drop down'                     =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ddlBAreas']",
+          'add a role: role drop down'                              =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ddlRoles']",
+          'add a role: save button'                                 =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_btnSave']",
+          'add a role: required filed alert business area'          =>"xpath^^.//*[contains(text(), 'Business area is required.')]",
+          'add a role: required alert role'                         =>"xpath^^.//*[contains(text(), 'Role is required.')]",
+          'add a role: page title'                                  =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_lblTitle']",
+          'add a role: save and go back button'                     =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_btnBack']",
+          'add a role: phis data feed success message'              =>"xpath^^.//*[contains(text(), 'The PHIS Data Feed was executed successfully.')]",
+          'service account: left nav'                               =>"xpath^^.//*[contains(text(), 'ervice Accounts')]",
+          'select organization: page title'                         =>"xpath^^//*[contains(@id, 'section_header')]",
+          '9060: application id'                                    =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00__6']/td[1]",
+          '9060: application number filter text box'                =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl02_ctl02_FilterTextBox_ApplicationNumber']",
+          '9060: id number filter text box'                         =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl02_ctl03_FilterTextBox_ApplicationNumber']",
+          '9060: id number filter icon'                             =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl02_ctl03_Filter_ApplicationNumber']",
+          '9060-3: application number filter text box'              =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl02_ctl03_FilterTextBox_ApplicationNumber']",
+          '9060: application number filter icon'                    =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl02_ctl02_Filter_ApplicationNumber']",
+          '9060-3: application number filter icon'                  =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl02_ctl03_Filter_ApplicationNumber']",
+          '9060: application number filter contains'                =>"xpath^^.//*[contains(text(), 'Contains')][contains(@class, 'rmText')]",
+          '9060: application application page'                      =>"xpath^^.//*[contains(text(), '9060 Application Header')]",
+          '9060: shipment information page'                         =>"xpath^^.//*[contains(text(), '9060-6 Shipment Information')]",
+          '9060: access control page'                               =>"xpath^^.//*[contains(text(), 'Access Control')][contains(@id, 'ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_lblAddProductHeaderTitle')]",
+          '9060: submit application page'                           =>"xpath^^.//*[contains(text(), 'Submit 9060-6 Application')]",
+          '9080-3: left nav'                                        =>"xpath^^.//*[contains(text(), '080-3')]",
+          '9080-3: magnifying glass'                                =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl04_imgAssign']",
+          '9080: magnifying glass'                                  =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgRecentApplications_ctl00_ctl04_gbcViewApplication']",
+          '9060: establishment for export page'                     =>"xpath^^.//*[contains(text(), 'Establishment Application For Export')]",
+          '9060: delete icon'                                       =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00']/tbody/tr/td[12]/a/img",
+          '9060: establishment app for export page'                 =>"xpath^^.//*[contains(text(), 'Establishment Application For Export')]",
+          'left nav: batch results'                                 =>"xpath^^.//*[contains(text(), 'atch Results')]",
+          'app magnifying glass'                                    =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl04_imgAssign']",
+          'manage user: account type drop down'                     =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ddlTypes']",
+          #Add product.
+          '9060: product name text box'                             =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtProductName']",
+          '9060: product code text box'                             =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtProductCode']",
+          '9060: ahccp category drop down'                          =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ddlHACCPCategory']",
+          '9060: species drop down'                                 =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ddlSpecies']",
+          '9060: frozen self stable check'                          =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rbFrozen_0']",
+          '9060: market net weight text box'                        =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtWeightOfLotPounds']",
+          '9060: number of package in lott text box'                =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtNumberOfPackages']",
+          '9060: package type drop down'                            =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ddlPackageType']",
+          '9060: number of product pencil icon'                     =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_imgEditEstablishment']",
+          '9060: establishment number text box'                     =>"xpath^^.//*[@id='EstablishmentSearchControl_txtNumber']",
+          '9060: search button'                                     =>"xpath^^.//*[contains(@value, 'Search')]",
+          '9060: establishment home icon'                           =>"xpath^^.//*[@id='EstablishmentSearchControl_gridSearchResults_ctl00_ctl04_gbccolumn']",
+          '9060: number of product drop down'                       =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ddlEstablishment']",
+          '9060: finish button'                                     =>"xpath^^.//*[contains(@value, 'Finish')]",
+          '9060: total net weight text box'                         =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtTotalWeightInPounds']",
+          '9060: certify statement check box'                       =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_chkMeat']",
+          '9060: certify statement check box inspection'            =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_chkIctfy']",
+          '9060: submit application button'                         =>"xpath^^.//*[contains(@value, 'Submit Application')]",
+          '9060: submit application confirmation'                   =>"xpath^^.//*[contains(text(), 'Export Application 9060 - 6 has been submitted successfully')]",
+          '9060: submit application id'                             =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ExportApplication9060Header_lblApplicationNumber']",
+          '9060: application header'                                =>"xpath^^.//*[@id='sectionheader_gold']/p",
+          '9060: left navigation bar'                               =>"xpath^^//*[contains (@id, 'ctl00_ctl00_ContentPlaceHolder1_AppMenuBar')]//*[contains(text(), '060')]",
+          '99060: id number filter icon'                            =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl02_ctl03_Filter_ApplicationNumber']",
+          #Service account.
+          'left nav: service accounts'                              =>"xpath^^.//*[contains(text(), 'ervice Accounts')]",
+          'organization filter text box'                            =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgOrganization_ctl00_ctl02_ctl03_FilterTextBox_Organization']",
+          'organization filter icon'                                =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgOrganization_ctl00_ctl02_ctl03_Filter_Organization']",
+          'filter contains'                                         =>"xpath^^.//*[contains(text(), 'Contains')][contains(@class, 'rmText')]",
+          'reset filter link'                                       =>"xpath^^.//*[contains(text(), 'Reset Filters')]",
+          'expiration date filter text box'                         =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgOrganization_ctl00_ctl02_ctl03_FilterTextBox_ExpirationDate']",
+          'expiration date filter icon'                             =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgOrganization_ctl00_ctl02_ctl03_Filter_ExpirationDate']",
+          'expiration date filter contains'                         =>"xpath^^.//*[contains(text(), 'EqualTo')][contains(@class, 'rmText')]",
+          'select link for organization'                            =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgOrganization_ctl00']/tbody/tr/td[7]/a",
+          'organization expiration date'                            =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgOrganization_ctl00']/thead/tr[2]/th[6]/a",
+          'organization filter table'                               =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgOrganization_ctl00']/tbody/tr/td[3]",
+
+
+
+
+
+
+      }
+end

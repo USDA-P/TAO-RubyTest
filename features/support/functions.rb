@@ -30,6 +30,8 @@ def get_date_value(date_value)
     when 'yesterday date'
       return get_yesterday_date
 
+    when 'past one year'
+     return past_one_year
   end
 end
 

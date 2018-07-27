@@ -6,18 +6,25 @@ require 'selenium-webdriver'
 
 EXEC_ID = Time.now.strftime('%m%d%Y%H%M%S')
 RESULTS_DIR = "#{Dir.pwd}/features/results/#{EXEC_ID}"
+if ENV['TEST_ENV'].downcase.eql? 'anet_dev'
+  TIMEOUT = 40
+else
+  TIMEOUT = 40
+  if ENV['TEST_ENV'].downcase.eql? 'anet_local'
+    TIMEOUT = 70
+  else
+    TIMEOUT = 40
+  end
+end
+
 
 SCREEN_SHOT = false
 
-if ENV['TEST_ENV'].downcase.include? 'score'
-  TIMEOUT = 40
-  @@IMPLICIT_WAIT = 30
-else
-  TIMEOUT = 60
-  @@IMPLICIT_WAIT = 60
-end
 # puts "Executing on browser #{Configuration.browser.downcase}"
 BROWSER_NAME = Configuration.browser.downcase
+
+
+
 
 #********************To open Browser at one time and run all scenario*********************
 
@@ -30,7 +37,7 @@ selenium_driver.open_timeout = TIMEOUT
 
 @@browser = Watir::Browser.new BROWSER_NAME.to_sym, :http_client => selenium_driver
 
-@@browser.driver.manage.timeouts.implicit_wait= @@IMPLICIT_WAIT
+@@browser.driver.manage.timeouts.implicit_wait=30
 # @browser = get_browser
 @@browser.driver.manage.window.maximize
 

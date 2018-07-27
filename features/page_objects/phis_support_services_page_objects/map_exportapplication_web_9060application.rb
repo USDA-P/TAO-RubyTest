@@ -28,7 +28,7 @@ def map_exportapplication_web_9060application
 
           'certification statement for meat'                => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_lblMeat"]',
           'certification statement for poultry'             => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_lblPoultry"]',
-          'certification statement for siluriformes fish'   => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_lblFish"]',
+          'certification statement for siluriformes fish'   => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_chkFish"]',
           'certification statement for none the above'      => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_lblNone"]',
 
           'add product'       => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ProductsOnApplication_rgProductSummary_ctl00_ctl02_ctl00_lnkAddProduct"]',
@@ -48,6 +48,7 @@ def map_exportapplication_web_9060application
           'establishment home icon'     => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_Establishment_MyEstablishments_gridUserEstablishments_ctl00_ctl04_gbccolumn"]',
           #
           'finish'                      => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_btnSave"]',
+
           'total net weight'            => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtTotalWeightInPounds"]',
           'terms and agreement'         => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_chkIctfy"]',
 
@@ -64,6 +65,7 @@ def map_exportapplication_web_9060application
           'shipment information 9060: next'               => 'xpath^^.//*[contains(@title,"Next")]',
           'meat:i certify statement'                      => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_chkMeat"]',
           'poultry: i certify statement'                  => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_chkPoultry"]',
+          'siluriformes fish: i certify checkbox'         =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_pnlStatements']/div[2]/table/tbody/tr[3]/td[1]",
           'is the maturity less than 30 months: yes'      => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rbMaturity_0"]',
           'sign out'                                      => 'xpath^^.//*[@id="ctl00_ctl00_lbSignout"]',
           'my establishments 1'                             => 'xpath^^.//*[@id="MyEstablishmentTab"]',
@@ -81,6 +83,7 @@ def map_exportapplication_web_9060application
           'delete icon'                 => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl04_imgDeleteApp"]',
           'add new file 1'                => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_UploadRequiredDocumentation_rgUploadRequiredDocumentation_ctl00_ctl02_ctl00_lnkAddNewRequiredDocumentation"]',
           'upload 1'                      => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_UploadRequiredDocumentation_btnReqUpload"]',
+
           'document title 1'              => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_UploadRequiredDocumentation_txtDocumentTitle"]',
           'supportive documentation provided by applicant: add new file'       =>'xpath^^.//*[text()="Add New File"]/following::*[@id="content"]/span[3]',
           'add new file 2'              => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_UploadDocumentWithGrid_rgUploadDocuments_ctl00_ctl02_ctl00_lnkAddNewFile"]',
@@ -88,7 +91,8 @@ def map_exportapplication_web_9060application
           # 'supportive documentation provided by applicant: upload'                    => 'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_UploadDocumentWithGrid_btnUpload"]',
           # 'choose file'                      =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_UploadDocumentWithGrid_fileUpload"]',
           'supportive documentation provided by applicant'                            => 'xpath^^.//*[@id="content"]/span[3]',
-          'browse 1'                =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_UploadRequiredDocumentation_fileUpload"]',
+          # 'browse 1'                =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_UploadRequiredDocumentation_fileUpload"]',
+          'browse 1'                =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_UploadRequiredDocumentation_btnReqUpload"]',
           'browse 2'                =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_UploadDocumentWithGrid_fileUpload"]',
           'upload 2'                =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_UploadDocumentWithGrid_btnUpload"]',
           'copy 1'                  =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl08_imgEdit"]',
@@ -98,6 +102,7 @@ def map_exportapplication_web_9060application
           'unsubmitted'             =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl04_lblStatus"]',
 
           'edit 1'                  =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl04_imgHome1"]',
+          'application edit icon'   =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl04_imgUnlockApp']",
 
           'cancel 1'                =>'xpath^^.//*[@id="confirm1525361580728_content"]/div/div[2]/a[2]/span/span',
           'previous'                =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_btnPrevious"]',
@@ -105,11 +110,11 @@ def map_exportapplication_web_9060application
           'approved'                =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl04_lblStatus"]',
           'application status filter text box'    =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl02_ctl03_FilterTextBox_Status"]',
 
-          'search establishments'            =>'xpath^^//a[@id="SearchTab"]/span/span/span',
-          'establishment search number'      =>'xpath^^//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_Establishment_EstablishmentSearchControl_txtNumber"]',
+          'search establishments'            =>'xpath^^.//a[@id="SearchTab"]/span/span/span',
+          'establishment search number'      =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_Establishment_EstablishmentSearchControl_txtNumber"]',
           'search button'                    =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_Establishment_EstablishmentSearchControl_btnSearch"]',
           'establishment home icon 1'        =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_Establishment_EstablishmentSearchControl_gridSearchResults_ctl00_ctl04_gbccolumn"]',
-          # 'applicant name'                   =>"xpath^^.//*[contains(text(),'Applicant Name')]",
+          'applicant name'                   =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ExportApplication9060Header_lblApplicationNumber']",
           'export applicant name'            =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtApplicantName"]',
           'pdf icon'                         =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl04_imgAddProduct1"]',
           'application number filter text box'    =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl02_ctl03_FilterTextBox_ApplicationNumber"]',
@@ -120,6 +125,119 @@ def map_exportapplication_web_9060application
 
           'filter button'                  =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl02_ctl03_Filter_Status"]',
           'filter button dropdown'         =>'xpath^^.//div[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_rfltMenu_detached"]/ul/li[2]/a/span',
+          'document type'                  =>'xpath^^.//*[@id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_UploadRequiredDocumentation_ddlDocumentType"]',
+          'adobe image icon'               =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl04_imgAddProduct1']",
+          'copy certificate'               =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl04_imgEdit']",
+          'why are you replacing this certificate'  =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ddlInlieuReason']",
+          'which certificate are you replacing'     =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtExpCertNumber']",
+          'edit product icon'                       =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ProductsOnApplication_rgProductSummary_ctl00_ctl04_gbcEditProduct']",
+          'marked net weight of lot lable'          =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_productInfoPanel']/fieldset/p[7]/label",
+          'number of packages in lot lable'         =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_productInfoPanel']/fieldset/p[8]/label/text()",
+          'yes button'                              =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rdConfirm_C_btnYes']",
+          'number of splits'                        =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_splitCountTextBox']",
+          'set split data'                          =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_splitInformationButton']",
+          'split weight pounds 1'                   =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00__0']/td[10]",
+
+          'split weight pounds 2'                   =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00_WeightOfLotPounds_tbSplitWeightPounds']",
+          'split package count 1'                   =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00_ctl05_lblSplitPackageCount']",
+          'split package count 2'                   =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00_ctl08_lblSplitPackageCount']",
+          'split1 export establishment name and number icon'   =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00']/tbody/tr[1]/td/img",
+          'export establishment number 1'                      =>"xpath^^.//*[@id='ExportEstablishmentDetails_ddlEstablishment']",
+          'export establishment number 1: m10828'              =>"xpath^^.//*[@id='ExportEstablishmentDetails_ddlEstablishment']/option[text()='M10828']",
+          'establishment details summit button'                =>"xpath^^html/body/form/div[3]/table[2]/tbody/tr/td/input",
+          'split2 export establishment name and number icon'   =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00']/tbody/tr[5]/td/img",
+          'total weight for new application 1'        =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00_ctl07_txtTotWtLbs']",
+          'total weight for new application 2'        =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00_ctl12_txtTotWtLbs']",
+          'remark statement'                          =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rdgRemarks_ctl00_ctl04_SelectRowSelectCheckBox']",
+          'finish 1'                                  =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_btnFinish']",
+          'split certificate number'                  =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_splitCertificateTextBox']",
+          'weight of lot pounds 1'                    =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00_ctl05_lblWeightOfLotPounds']",
+          'split1 net weight column:div'              =>"xpath^^.//*[contains(text(),'Split: 1')]/following::div[1]",
+          'split1 net weight'                         =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00_WeightOfLotPounds_tbSplitWeightPounds']",
+          'split1 number of packages:div'             =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00__0']/td[12]/div[1]",
+          'split1 number of packages'                 =>"xpath^^html/body/form/div[8]/div[3]/div/div/div[5]/div/div/table/tbody/tr[3]/td[12]/div[2]/span/input[1]",
+          'cancel button'                             =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_btnCancel']",
+          'unlock image icon'                         =>"xpath^^.//*[contains(@id,'ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl04_imgUnlockApp')]",
+          'unlock image icon 2'                       =>"xpath^^.//*[contains(@id,'ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl06_imgUnlockApp')]",
+          'which certificate are you replacing 1'     =>"xpath^^.//*[contains(@id, 'ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtExpCertNumber')]",
+          'split2 net weight column:div'              =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00__1']/td[10]/div",
+          'split2 net weight'                         =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00_WeightOfLotPounds_tbSplitWeightPounds']",
+          'split2 number of packages:div'             =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00__1']/td[12]/div",
+          'split2 number of packages'                 =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgSplitProducts_ctl00_SplitPackageCount_tbSplitPackageCount']",
+          '1st application number 62.12'              =>"xpath^^.//*[@id='content']/table[1]/tbody/tr[2]/td/table/tbody/tr[3]/td[2]",
+          '2nd application number 62.12'              =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ExportApplication9060Header_lblApplicationNumber']",
+
+          'first name'                    =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtFirstName']",
+          'last name'                     =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtLastName']",
+          'email address'                 =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtEmail']",
+          'login button'                  =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_btnLogin']",
+          'submit enrollment request'     =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_lnkAction']",
+          'account type'                  =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_uc1_ddlAccountTypes']",
+          'select role'                   =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_uc2_ddlRoles']",
+          'number: establishment number'  =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_uc60_txtNumber']",
+          'find button'                   =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_uc60_btnSearch']",
+          'select'                        =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_uc60_rgOrgs_ctl00__0']/td[3]/a",
+          'enrollment request no'         =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_lblRequests']",
+          'logout eAuth'                  =>"xpath^^.//*[@id='ctl00_ctl00_ucHeader_lnkLogout']",
+          'finish button'                 =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_btnFinish']",
+          'user management 1'             =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_AppMenuBar']/ul/li[1]/a/span/span[2]/text()",
+          'requestor name'                =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ReqSearch_txtName']",
+          'manage requests'               =>"xpath^^.//*[contains(text(), 'anage Requests')]",
+          'email'                         =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ReqSearch_txtEmail']",
+          'find'                          =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ReqSearch_btnFind']",
+          'open icon'                     =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ReqSearchResult_grdRequests_ctl00_ctl04_gbcAction']",
+          'approve'                       =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_lnkApprove']",
+          'manage users'                  =>"xpath^^.//*[contains(text(), 'Manage Users')]",
+          'account type 2'                  =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ddlTypes']",
+          'user (fsis federal employee)'    =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgUsers_ctl00_ctl02_ctl02_FilterTextBox_User']",
+          'filter user icon'                =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgUsers_ctl00_ctl02_ctl02_Filter_User']",
+          'contains link'                   =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgUsers_rfltMenu_detached']/ul/li[2]/a/span",
+          'open profile'                    =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgUsers_ctl00_ctl04_lnkOpen']",
+          'run phis data feed'              =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_lnkRunDF']",
+          'requestor'                       =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ReqSearchResult_grdRequests_ctl00_ctl02_ctl02_FilterTextBox_User']",
+          'filter user requestor'           =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ReqSearchResult_grdRequests_ctl00_ctl02_ctl02_Filter_User']",
+          'contains requestor link'         =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ReqSearchResult_grdRequests_rfltMenu_detached']/ul/li[2]/a/span",
+          'request number'                  =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ReqSearch_txtRequestNumber']",
+          # 'img add product pdf icon'        =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl04_imgAddProduct1']"
+          'edit icon'                       =>"xpath^^html/body/form/div[7]/div[3]/div/div/div[7]/div/div[1]/div/div/table/tbody/tr[1]/td[10]/a[1]/img",
+          'view image link'                 =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl04_imgAssign']",
+          'products summary'                =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_AppMenuBar']/ul/li/div/ul/li[5]/a/span/span[2]",
+          'view product summary icon'       =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ProductsOnApplication_rgProductSummary_ctl00_ctl04_gbcEditProduct']",
+          'view application'                =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgRecentApplications_ctl00_ctl04_gbcViewApplication']",
+          'product information'             =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_AppMenuBar']/ul/li/div/ul/li[3]/a/span/span[2]",
+          'submit application for establishment'       =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_AppMenuBar']/ul/li/div/ul/li[4]/a/span/span[2]",
+          'batch results'                              =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_AppMenuBar']/ul/li[3]/a/span/span[2]",
+          'date range: two days'           =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rbDay']",
+          'date range: one week'           =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rbWeek']",
+          'date range: one month'          =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rbMonth']",
+
+          'reset button'                  =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_btnReset']",
+          'requestor email'               =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ReqSearch_txtEmail']",
+          'find requestor'                =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ReqSearch_btnFind']",
+          # 'user filter text box'          =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rgUsers_ctl00_ctl02_ctl02_FilterTextBox_User']"
+          #  'approve image icon'            =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_lnkApprove']/img"
+          'approve button'                =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_lnkApprove']",
+          'application number'            =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl02_ctl03_FilterTextBox_ApplicationNumber']",
+          'filter icon application number' =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_ctl00_ctl02_ctl03_Filter_ApplicationNumber']",
+          'contains filter link'           =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_rfltMenu_detached']/ul/li[2]/a/span",
+          'ok 1'                      =>'xpath^^.//*[@class="rwOuterSpan"][text()="OK"]',
+          'exit menu product summary' =>"xpath^^.//*[contains(text(), 'xit Menu')]",
+          'date range: two days 1'    =>"xpath^^.//*[contains(@id,'ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rbDay')]",
+          'date range: one week 1'    =>"xpath^^html/body/form/div[7]/div[3]/div/div/div[2]/div/div[3]/div/table/tbody/tr[1]/td[2]/span[2]/input",
+          'date range: one month 1'   =>"xpath^^.//*[contains(@id,'ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rbMonth')]",
+          'number filter dropdown contains'         =>"xpath^^.//*[@id='ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_radGrid9060Applications_rfltMenu_detached']/ul/li[2]/a/span"
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

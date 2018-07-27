@@ -49,7 +49,7 @@ module FSIS_DB
   private
 
   def self.con
-    @con ||= TinyTds::Client.new(username: Configuration.db_username, password: Configuration.db_password, dataserver: Configuration.server_name,database: Configuration.fsis_db_name)
-  end
+  @con ||= TinyTds::Client.new(username: Configuration.db_username, password: Configuration.db_password, dataserver: Configuration.server_name,database: Configuration.fsis_db_name)
+end
 
 end

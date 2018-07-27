@@ -69,6 +69,8 @@ Then(/^the user dismisses browser pop-ups$/) do
   # @browser.driver.switch_to.alert.present?
   if @browser.alert.exists?
   @browser.driver.switch_to.alert.accept
+  else
+    puts 'No Pop Up to close or accept, all good'
   end
 end
 

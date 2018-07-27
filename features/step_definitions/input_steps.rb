@@ -15,7 +15,7 @@ Then(/^the user enters "(.*)" into "(.*)" on "(.*)" page$/) do |value, field_nam
   selector =(selector.downcase.include? 'xpath') ? :xpath : :css
 
   # Get the Date values from date functions if requested in Gherkin parameter
-  if (value.downcase.eql? 'todays date') || (value.downcase.eql? 'start date of current month')|| (value.downcase.eql? 'tomorrows date')|| (value.downcase.eql? 'next year from todays date')|| (value.downcase.eql? 'next business date')
+  if (value.downcase.eql? 'todays date') || (value.downcase.eql? 'start date of current month')|| (value.downcase.eql? 'tomorrows date')|| (value.downcase.eql? 'next year from todays date')|| (value.downcase.eql? 'next business date')|| (value.downcase.eql? 'past one year')
     value = get_date_value(value)
   else
     value = value

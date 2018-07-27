@@ -54,6 +54,7 @@ Then(/^the user remembers the value of "(.*)" field into "(.*)" on "(.*)" page$/
 
   #get element value of object
   element_value = element_obj.text
+  puts "the value or data you wish to remember is " +element_value
 
   # Save readed value into hash table
   save_value_in_test_data_hash(hash_key_name.downcase, element_value)
@@ -306,4 +307,39 @@ When(/^user attached "(.*)" file into "(.*)" on "(.*)" page$/) do |attached_file
 
 end
 
-World(MiniTest::Assertions)
+Then(/^the user right clicks the element with text "(.*)" for export$/) do |link_text|
+  # Create link object for export task
+  link_obj = @browser.contains(:text =>link_text)
+
+  # Wait for element to be exist, visible,present and enabled
+  wait_for_element(link_obj)
+
+  # Focus on element to make it visible
+  focus_on_element(link_obj)
+
+  # Right Click on element
+  @browser.action.context_click(link_obj).perform
+
+end
+
+When(/^the user right-click "([^"]*)" task with current value of "(.*)" and selects "(.*)" on Task Calendar page$/) do |task,key_value,option|
+  value = test_data_generator key_value
+
+  # Check Fail test if value is not retrieved
+  if value.nil?
+    fail "Not Retrieved created value for : #{key_value}"
+  end
+
+  calendar_task_name = "(#{value}) #{task} :"
+
+  calendar_task_xpath = ".//*[contains(text(),'#{calendar_task_name}')]"
+  obj= get_element_obj('xpath',calendar_task_xpath)
+  obj.right_click
+  sleep 0.5
+  option_element_xpath = ".//*/body/ul[not(contains(@style,'display: none'))]/descendant::span[contains(text(),'#{option}')]"
+
+  @browser.span(:xpath,option_element_xpath).click
+
+end
+
+  World(MiniTest::Assertions)

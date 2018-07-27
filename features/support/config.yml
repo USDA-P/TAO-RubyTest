@@ -17,6 +17,10 @@ test05:
 
 test06:
   :host: https://qphisweb06.usda.net/FSISDashBoard/Shared
+train01:
+  :host: https://phistrn01.fsis.usda.gov/FSISDashBoard/Shared
+train02:
+  :host: https://phistrn02.fsis.usda.gov/FSISDashBoard/Shared
 
 #  :dmzhost: http://dphisweb05.usda.net/EnrollmentDMZ
 #  :server_name: QPHISSQL01
@@ -99,6 +103,12 @@ score_test06:
 
 score_test31:
    :host: http://qphisweb31.usda.net
+
+anet_dev:
+   :host: https://dev.assurancenet.fsis.usda.gov/assurancenet/changeUserRole.do?role=3177
+
+anet_local:
+    :host: http://10.13.16.156:9080/assurancenet/webapp.do?section=home&action=index
 
 
 chrome:
